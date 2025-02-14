@@ -1,5 +1,10 @@
+#ifndef DATAMODEL_H
+#define DATAMODEL_H
 
-
+#include <QtCore/QObject>
+#include <QtCore/QTimer>
+#include <QtCore/QJsonObject>
+#include "networkmanager.h"
 
 class DataModel : public QObject {
     Q_OBJECT
@@ -29,6 +34,8 @@ signals:
 private slots:
     void updateData();
     void handleNetworkError(const QString &error);
+    void handleDataReceived(const QJsonObject &data);
+    void handleStatusReceived(const QJsonObject &status);
     
 private:
     QTimer *updateTimer;
@@ -39,3 +46,5 @@ private:
     double m_motorTemp;
     bool m_connected;
 };
+
+#endif // DATAMODEL_H

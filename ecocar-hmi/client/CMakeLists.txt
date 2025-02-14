@@ -4,7 +4,19 @@ project(ecocar-hmi VERSION 1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick QuickControls2 Charts)
+# Set Qt6 installation prefix
+set(CMAKE_PREFIX_PATH "/usr/lib/aarch64-linux-gnu/cmake/Qt6")
+
+# Find required Qt packages
+find_package(Qt6 REQUIRED COMPONENTS 
+    Core
+    Network
+    Quick 
+    QuickControls2 
+    Charts
+)
+
+# Rest of your CMakeLists.txt remains the same...
 
 qt_standard_project_setup()
 
@@ -32,12 +44,19 @@ qt_add_qml_module(ecocar-hmi
 
 # Link required Qt modules
 target_link_libraries(ecocar-hmi PRIVATE
+    Qt6::Core
+    Qt6::Network
     Qt6::Quick
     Qt6::QuickControls2
     Qt6::Charts
 )
 
-set_target_properties(ecocar-hmi PROPERTIES
-    WIN32_EXECUTABLE TRUE
-    MACOSX_BUNDLE TRUE
+# Add include directories
+target_include_directories(ecocar-hmi PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+    ${Qt6Core_INCLUDE_DIRS}
+    ${Qt6Network_INCLUDE_DIRS}
+    ${Qt6Quick_INCLUDE_DIRS}
+    ${Qt6QuickControls2_INCLUDE_DIRS}
+    ${Qt6Charts_INCLUDE_DIRS}
 )

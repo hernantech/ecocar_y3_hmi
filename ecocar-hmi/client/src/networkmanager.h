@@ -1,3 +1,12 @@
+#ifndef NETWORKMANAGER_H
+#define NETWORKMANAGER_H
+
+#include <QtCore/QObject>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkReply>
+#include <QtCore/QJsonObject>
+#include <QtCore/QUrl>
+
 class NetworkManager : public QObject {
     Q_OBJECT
     
@@ -18,3 +27,5 @@ private:
     
     void handleNetworkReply(QNetworkReply *reply);
 };
+
+#endif // NETWORKMANAGER_H
