@@ -5,6 +5,7 @@
 The NavQ Plus uses Wayland as its default display server, with X11 available as an alternative. Due to this:
 - Direct GPU access via DRM is recommended for most applications
 - X11 forwarding requires additional setup and may not provide optimal performance
+- Per [docs](https://www.nxp.com/docs/en/user-guide/IMX_YOCTO_PROJECT_USERS_GUIDE.pdf), X11 applications using EGL are not supported
 - Applications should be designed with Wayland compatibility in mind
 
 ## Setting up X11 Forwarding (Alternative Method)
